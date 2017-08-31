@@ -1,0 +1,24 @@
+<head>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>나만의 다이어리</h1>
+        <% if user_signed_in? %>
+          <h2><%= link_to 'Sign out', destroy_user_session_path, method='delete' %></h2>
+        <% else %>
+          <h4><%= link_to 'Sign in', new_user_session_path %> <%= link_to 'Sign up', new_user_registration_path %></h4>
+        <% end %>
+        <% @posts.each do |post| %>
+            <h2><a href="/posts/show/<%= post.id %>"><%= post.id %> : <%= post.title %></h2>
+        <% end %>
+        <h3><a href="/posts/new">[새글 쓰러 가기]</a></h3>
+    </div>
+</body>
